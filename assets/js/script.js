@@ -15,11 +15,12 @@ function citySearch() {
     })
     .then(function (response) {
       var place = response.coord;
-      getForecast(place.lat, place.lon);
+      getForecast(place.lat, place.lon, place.temp);
+      // console.log(getForecast);
     });
 }
 function getForecast(lat, lon) {
-  var cityWeather = `https:api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=imperial&appid=480554773b84ca0bbe144db4c1fb5c42`;
+  var cityWeather = `https:api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=imperial&appid=480554773b84ca0bbe144db4c1fb5c42`;
   fetch(cityWeather)
     .then(function (response) {
       if (200 !== response.status) {
@@ -28,8 +29,12 @@ function getForecast(lat, lon) {
       return response.json();
     })
     .then(function (response) {
+      var tempEl = response.current.temp;
+      var windEl = response.wind_speed;
+      var uvEl = response.current.uvi;
+      var humEl = response.current.humidity;
       console.log(response);
-
+      console.log(windEl);
       //display this
       //check docs or console log for info that i need
     });
