@@ -7,7 +7,7 @@ function citySearch() {
   fetch(search)
     .then(function (response) {
       if (200 !== response.status) {
-        console.log("There's a problem dude.  Status:" + response.status);
+        console.log("There's a problem.  Status:" + response.status);
       }
       return response.json();
     })
@@ -28,18 +28,17 @@ function getForecast(lat, lon, cityName) {
     .then(function (response) {
       var cities = citySearch.cityName;
       var codeIcon = response.current.weather[0].icon;
-      var iconEl = `http://openweathermap.org/img/w/${codeIcon}.png`;
+      var iconEl = `http://openweathermap.org/img/wn/${codeIcon}.png`;
       var tempEl = response.current.temp;
       var windEl = response.current.wind_speed;
       var uvEl = response.current.uvi;
       var humEl = response.current.humidity;
       var dateEl = response.current.dt;
       var showDate = new Date(dateEl * 1000).toLocaleDateString("en-US");
-      console.log(showDate);
-      console.log(response);
-      console.log(codeIcon);
 
       //today info
+      //add city name
+      $("#city-weather").append(`<img src=${iconEl}></img>`);
       $("#city-weather").append($("<li>").addClass("details").text(showDate));
       $("#city-weather").append(
         $("<li>")
@@ -62,7 +61,6 @@ function getForecast(lat, lon, cityName) {
           .text("UV Index: " + uvEl)
       );
       //5day, date, icon, temp, wind, humidity
-      // var fiveDay =
     });
 }
 
