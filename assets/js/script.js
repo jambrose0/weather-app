@@ -20,6 +20,7 @@ function citySearch() {
     });
 }
 function getForecast(lat, lon) {
+  var cities = citySearch.cityName;
   var cityWeather = `https:api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=imperial&appid=480554773b84ca0bbe144db4c1fb5c42`;
   fetch(cityWeather)
     .then(function (response) {
@@ -30,12 +31,17 @@ function getForecast(lat, lon) {
     })
     .then(function (response) {
       var tempEl = response.current.temp;
-      var windEl = response.wind_speed;
+      // var windEl = response.wind_speed;  how to get wind speed?
       var uvEl = response.current.uvi;
       var humEl = response.current.humidity;
       console.log(response);
-      console.log(windEl);
-      //display this
+      //display city and date
+      `<h3>${cities}</h3>`;
+      //display temp
+      //display wind
+      //display humidity
+      //display uv index
+
       //check docs or console log for info that i need
     });
 }
