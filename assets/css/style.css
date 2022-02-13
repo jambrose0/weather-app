@@ -4,3 +4,6 @@ header {
   color: white;
   text-align: center;
 }
+.details {
+  list-style: none;
+}
