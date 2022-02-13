@@ -1,5 +1,3 @@
-//url for lat and long
-
 var key = "480554773b84ca0bbe144db4c1fb5c42";
 var searchEl = $("#get-city");
 
@@ -16,7 +14,6 @@ function citySearch() {
     .then(function (response) {
       var place = response.coord;
       getForecast(place.lat, place.lon, place.temp, cityName);
-      // console.log(getForecast);
     });
 }
 function getForecast(lat, lon, cityName) {
@@ -29,19 +26,9 @@ function getForecast(lat, lon, cityName) {
       return response.json();
     })
     .then(function (response) {
-      //display city and date
-
-      //display temp
-      //display wind
-      //display humidity
-      //display uv index
-      //step1: create text content, i.e. h2
-      //step2: template literal var.textContent = Humidity: $(humEl);
-      //step3: append to the appropriate div
       var cities = citySearch.cityName;
       var codeIcon = response.current.weather[0].icon;
       var iconEl = `http://openweathermap.org/img/w/${codeIcon}.png`;
-      // console.log(cities);
       var tempEl = response.current.temp;
       var windEl = response.current.wind_speed;
       var uvEl = response.current.uvi;
@@ -51,9 +38,8 @@ function getForecast(lat, lon, cityName) {
       console.log(showDate);
       console.log(response);
       console.log(codeIcon);
-      console.log("awooo");
-      // $("#city-weather").append($("<h3>").text(cityName));
-      // $("#city-weather").append($(iconEl));
+
+      //today info
       $("#city-weather").append($("<li>").addClass("details").text(showDate));
       $("#city-weather").append(
         $("<li>")
@@ -79,7 +65,6 @@ function getForecast(lat, lon, cityName) {
       // var fiveDay =
     });
 }
-//template literal approach- more modern way
 
 $("#searchBtn").click(function () {
   citySearch();
